@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+<script th:src="@{/js/bootstrap.js}"/>
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>Pobieranie opini z Ceneo.pl</title>
+</head>
+
+<style>
+    .table {
+	table-layout:fixed;
+}
+
+.table td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+</style>
+<script>
+    function loadButton(){
+        document.getElementById('loadbtn').innerHTML = '<i class="fa fa-spinner fa-spin"></i> Pobieram';
+    }
+</script>
+<body>
+<nav class="navbar navbar-light" style="background-color: #f7f7f7;border: 1px solid lightgrey; margin-bottom:10px">
+    <a href="/products"><button class="btn btn-primary">&lt; Produkty</button></a>
+</nav>
+<div style="margin-left:20px;margin-top:20px">
+<div class="row">
+<div class="col-sm-6" role="complementary">
+
+    <div class="panel panel-default">
+        <div class="panel-body table-responsive">
+
+            <table class="table table-bordered table-condensed f11">
+                <tbody><tr>
+                    <td colspan="2" align="center" class="info"><b>Info</b></td>
+                </tr>
+                <tr>
+                    <td width="35%"><b>ID Produktu</b></td>
+                    <td width="65%" th:text="${product.productId}"></td>
+                </tr>
+                <tr>
+                    <td><b>Kategoria</b></td>
+                    <td th:text="${product.category}"></td>
+                </tr>
+                <tr>
+                    <td><b>Producent</b></td>
+                    <td th:text="${product.manufacturer}"></td>
+                </tr>
+                <tr>
+                    <td><b>Model</b></td>
+                    <td th:text="${product.model}"></td>
+                </tr>
+                <tr>
+                    <td><b>Dodatkowe info</b></td>
+                    <td th:text="${product.additionalInfo}"></td>
+                </tr>
+                <tr>
+                    <td><b>Liczba opini</b></td>
+                    <td th:text="${reviews_count}"></td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+</div>
+    <div class="row">
+        <div class="col-sm-5 alert alert-warning" style="margin-left: 70px;text-align: center;">
+        <strong>Uwaga! </strong> Brak specyfikacji co do "Dodatkowych Informacji".</div>
+</div>
+    <div class="row">
+
+    <div class="col-sm-2">
+        <a th:href="@{/products/{id}/reviews(id=${product.productId})}"><button type="button" class="btn btn-success btn-block">Zobacz opinie</button></a></div>
+
+     <div class="col-sm-2">
+         <a th:href="@{/etl/{id}(id=${product.productId})}"><button id="loadbtn" type="button" onclick="loadButton()" class="btn btn-primary btn-block">Pobierz opinie</button></a></div>
+    <div class="col-sm-2">
+        <a th:href="@{/products/{id}/deleteReviews(id=${product.productId})}"><button type="button" class="btn btn-danger btn-block">Usuń opinie</button></a></div>
+</div>
+
+</div>
+</body>
+</html>

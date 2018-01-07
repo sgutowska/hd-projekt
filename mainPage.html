@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" />
+<script th:src="@{/js/bootstrap.js}"/>
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>Pobieranie opini z Ceneo.pl</title>
+</head>
+<body>
+<style>
+    div.well{
+  height: 250px;
+}
+
+body {
+    background-color: #f9f9f9;
+}
+
+.Absolute-Center {
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  border: 2px solid grey;
+  background-color: white
+}
+
+.Absolute-Center.is-Responsive {
+  width: 50%;
+  height: 45%;
+  min-width: 200px;
+  max-width: 400px;
+  padding: 40px;
+}
+
+#logo-container{
+  margin: auto;
+  margin-bottom: 10px;
+  width:200px;
+  height:30px;
+}
+</style>
+<div class="container">
+    <div class="row">
+        <div class="Absolute-Center is-Responsive" style="/* border-color: black; *//* border: 1px; */border: 2px solid grey;background-color: white;">
+            <div style="text-align: center; font-size: 20px;">ETL opini o produkcie z serwisu:</div>
+            <div><img src="https://www.ceneo.pl/Content/img/icons/logo-ceneo.svg"></img></div>
+            <div id="logo-container"></div>
+            <div class="col-sm-12 col-md-10 col-md-offset-1">
+            </div>
+            <div class="form-group">
+                <a href="/products"><button type="button" class="btn btn-primary btn-block">Lista produktów</button></a>
+            </div>
+            <div class="form-group text-center">
+                <p>Autorzy: Karol Juszyński, Sylwia Gutowska, Jędrek Jankowski, Kamil Gawin</p>
+            </div>
+        </div>
+</div>
+</div>
+
+
+<!--<a href="/products"><button type="button" class="btn btn-primary">Pokaż produkty</button></a>-->
+<!--<a href="/products"><button type="button" class="btn btn-primary" disabled="disabled">Pobierz opinie o produkcie</button></a>-->
+</body>
+</html>

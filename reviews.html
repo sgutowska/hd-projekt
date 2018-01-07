@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" />
+<script th:src="@{/js/bootstrap.js}"/>
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>Opinie o produkcie</title>
+</head>
+<body>
+<nav class="navbar navbar-light" style="background-color: #f7f7f7;border: 1px solid lightgrey; margin-bottom:10px">
+    <a th:href="@{/products/{id}(id=${product.productId})}"><button th:text="|&lt; ${product.manufacturer} ${product.model}|" class="btn btn-primary"></button></a>
+</nav>
+<div>
+    <div class="row">
+        <h2 class="col-sm-2">Opinie o produkcie</h2>
+        <a th:href="@{/products/{id}/reviews/exportcsv(id=${product.productId})}"><button class="btn btn-primary">Pobierz CSV</button></a></div>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Zalety</th>
+            <th>Wady</th>
+            <th>Opis</th>
+            <th>Ile gwiazdek</th>
+            <th>Autor</th>
+            <th>Data</th>
+            <th>Czy poleca</th>
+            <th>Użytecznośc opini - tak</th>
+            <th>Użytecznośc opini - nie</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="review : ${reviews}">
+            <td th:text="${review.pros}"></td>
+            <td th:text="${review.cons}"></td>
+            <td th:text="${review.description}"></td>
+            <td th:text="${review.starRating}"></td>
+            <td th:text="${review.author}"></td>
+            <td th:text="${review.date}"></td>
+            <td th:text="${review.isRecommended}"></td>
+            <td th:text="${review.voteYes}"></td>
+            <td th:text="${review.voteNo}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+<script th:src="@{/js/bootstrap.js}"/>
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>Pobieranie opini z Ceneo.pl</title>
+</head>
+
+<style>
+
+.table td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+</style>
+<script>
+    function scrapeProduct(){
+        var product = prompt("Podaj ID produktu");
+        if(product != null){
+            if(product !== ""){
+            loadButton();
+            window.location = "/etl/"+product;
+        }
+        }
+    }
+    function loadButton(){
+        document.getElementById('loadbtn').innerHTML = '<i class="fa fa-spinner fa-spin"></i> Pobieram';
+    }
+
+</script>
+<body>
+<nav class="navbar navbar-light" style="background-color: #f7f7f7;border: 1px solid lightgrey; margin-bottom:10px">
+    <a href="/"><button class="btn btn-primary">&lt; Strona główna</button></a>
+</nav>
+<div style="margin-left:20px;margin-top:20px">
+    <div class="row">
+        <h2>Lista produktów</h2>
+       <button id="loadbtn" onclick="scrapeProduct()" class="btn btn-primary" style="margin-left:20px">Dodaj produkt</button>
+    </div>
+    <div class="row" style="margin-top:20px">
+        <div class="col-sm-8" role="complementary">
+
+            <div class="panel panel-default">
+                <div class="panel-body table-responsive">
+                    <table class="table table-bordered table-condensed f11">
+
+                        <thead>
+                    <tr>
+                        <th>ID Produktu</th>
+                        <th>Kategoria</th>
+                        <th>Nazwa</th>
+                    </tr>
+                    </thead>
+                    <tr th:each="product : ${products}">
+                        <td th:text="${product.productId}"></td>
+                        <td th:text="${product.category}"></td>
+                        <td th:text="|${product.manufacturer} ${product.model} |"></td>
+                        <td><a th:href="@{/products/{id}(id=${product.productId})}"><button class="btn btn-info">Otwórz</button></a></td>
+                    </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

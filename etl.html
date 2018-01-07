@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" />
+<script th:src="@{/js/bootstrap.js}"/>
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>Pobieranie opini z Ceneo.pl</title>
+</head>
+
+<body>
+<nav class="navbar navbar-light" style="background-color: #f7f7f7;border: 1px solid lightgrey; margin-bottom:10px">
+    <a th:href="@{/products/{id}(id=${product.productId})}"><button th:text="|&lt; ${product.manufacturer} ${product.model}|" class="btn btn-primary"></button></a>
+</nav>
+<div>
+    <div class="alert alert-success" role="alert" th:text="|Pobrano ${scraped} opini.|">
+
+    </div>
+    <div class="alert alert-info" role="alert" th:text="|Dodano: ${added} opini do bazy danych|">
+
+    </div>
+    <div class="alert alert-danger" role="alert" th:text="|Pominięto: ${omitted} wpisów (Już istnieją w bazie)|">
+
+    </div>
+</div>
+</body>
+</html>
